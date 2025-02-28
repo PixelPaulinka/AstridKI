@@ -1,0 +1,249 @@
+/* Основные стили */
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background: linear-gradient(135deg, #1e1e2f, #2a2a40);
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #e0e0e0;
+}
+
+.chat-container {
+    width: 450px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 20px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    height: 700px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.chat-box {
+    flex: 1;
+    padding: 20px;
+    overflow-y: auto;
+    background: rgba(0, 0, 0, 0.2);
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.message {
+    max-width: 75%;
+    padding: 12px 16px;
+    border-radius: 15px;
+    font-size: 14px;
+    line-height: 1.4;
+    position: relative;
+    animation: fadeIn 0.4s ease-in-out;
+    word-wrap: break-word;
+}
+
+.user-message {
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    align-self: flex-end;
+    border-bottom-right-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.bot-message {
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    align-self: flex-start;
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.input-container {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.input-container input {
+    flex: 1;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    font-size: 14px;
+    outline: none;
+    background: rgba(255, 255, 255, 0.1);
+    color: #e0e0e0;
+    transition: border-color 0.3s ease, background 0.3s ease;
+}
+
+.input-container input::placeholder {
+    color: rgba(224, 224, 224, 0.7);
+}
+
+.input-container input:focus {
+    border-color: #007bff;
+    background: rgba(255, 255, 255, 0.15);
+}
+
+.input-container button {
+    margin-left: 10px;
+    padding: 12px 20px;
+    background: linear-gradient(135deg, #007bff, #0056b3);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    cursor: pointer;
+    font-size: 14px;
+    transition: transform 0.2s ease, background 0.3s ease;
+}
+
+.input-container button:hover {
+    transform: scale(1.05);
+    background: linear-gradient(135deg, #0056b3, #003d80);
+}
+
+.input-container button:disabled {
+    background: rgba(255, 255, 255, 0.1);
+    cursor: not-allowed;
+    transform: none;
+}
+
+.emoji-container {
+    display: none;
+    position: absolute;
+    bottom: 80px;
+    left: 20px;
+    background: rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 15px;
+    padding: 10px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+    animation: slideUp 0.3s ease-in-out;
+}
+
+.emoji {
+    font-size: 24px;
+    cursor: pointer;
+    margin: 5px;
+    transition: transform 0.2s ease;
+}
+
+.emoji:hover {
+    transform: scale(1.2);
+}
+.delete-button {
+    background: none;
+    border: none;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: 10px;
+}
+
+.loading {
+    text-align: center;
+    padding: 10px;
+    font-size: 14px;
+    color: rgba(224, 224, 224, 0.8);
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Анимации */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Скроллбар */
+.chat-box::-webkit-scrollbar {
+    width: 8px;
+}
+
+.chat-box::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+}
+
+.chat-box::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 10px;
+}
+
+.chat-box::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+/* Медиа-запрос для устройств с шириной экрана менее 768px */
+@media (max-width: 768px) {
+    body {
+        padding: 10px; /* Добавляем отступы по краям */
+    }
+
+    .chat-container {
+        width: 100%; /* Чат занимает всю ширину экрана */
+        height: 90vh; /* Чат занимает всю высоту экрана */
+        border-radius: 0; /* Убираем скругления углов */
+        box-shadow: none; /* Убираем тень */
+    }
+
+    .chat-box {
+        padding: 10px; /* Уменьшаем отступы внутри чата */
+        gap: 10px; /* Уменьшаем расстояние между сообщениями */
+    }
+
+    .message {
+        max-width: 85%; /* Сообщения занимают больше места */
+        font-size: 13px; /* Уменьшаем размер текста */
+        padding: 10px 12px; /* Уменьшаем отступы внутри сообщений */
+    }
+
+    .input-container {
+        padding: 10px; /* Уменьшаем отступы в контейнере ввода */
+    }
+
+    .input-container input {
+        padding: 10px; /* Уменьшаем отступы в поле ввода */
+        font-size: 13px; /* Уменьшаем размер текста */
+    }
+
+    .input-container button {
+        padding: 10px 15px; /* Уменьшаем отступы в кнопке */
+        font-size: 13px; /* Уменьшаем размер текста */
+    }
+
+    .emoji-container {
+        bottom: 70px; /* Сдвигаем контейнер с эмодзи выше */
+        left: 10px; /* Уменьшаем отступ слева */
+        padding: 8px; /* Уменьшаем отступы внутри контейнера */
+    }
+
+    .emoji {
+        font-size: 20px; /* Уменьшаем размер эмодзи */
+    }
+
+    .loading {
+        font-size: 13px; /* Уменьшаем размер текста */
+    }
+}
